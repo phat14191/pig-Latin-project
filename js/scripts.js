@@ -1,5 +1,6 @@
 var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var vowels = ['a', 'e', 'i', 'o', 'u'];
+var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
 
 var isNumber = function(userArray){
   for (var i = 0; i < userArray.length; i++) {
@@ -35,13 +36,34 @@ var isMultiCharWord = function(wordArray){
 
     for (var j = 0; j < eachWord.length; j++){
       if ((wordArray[i].length > 1) && (eachWord[0] == "a") || (eachWord[0] == "e") || (eachWord[0] == "i") || (eachWord[0] == "o") || (eachWord[0] == "u")){
-        wordArray[i] += "ay";
+        wordArray[i] += "way";
         var answer = wordArray.join(" ");
-        return answer;
+      }
+    }
+    if ((wordArray[i].length > 1) && (eachWord[0] !== "a") || (eachWord[0] !== "e") || (eachWord[0] !== "i") || (eachWord[0] !== "o") || (eachWord[0] !== "u")) {
+      for (var k = 0; k < consonants.length; k++){
+          var tempString = eachWord.join("");
+          var answer = tempString.substring(1) + tempString.substring(0 , 1) + "ay";
       }
     }
   }
 }
+//if first letter is vowel it will return 1.
+var consonantCount = function(wordArray){
+  var count = 0;
+    for (var i = 0; i < wordArray.length; i++){
+      var eachWord = wordArray[i].split("");
+      for (var j = 0; j < eachWord.length - 1; j++) {
+        count++;
+        if ((eachWord[j + 1] === "a") || (eachWord[j + 1] === "e") || (eachWord[j + 1] === "i") || (eachWord[j + 1] === "o") || (eachWord[j + 1] === "u")) {
+          return count;
+        }
+      }
+    }
+}
+
+
+var isFirstTwoConsonants =
 
 $(document).ready(function(){
   $("form#pig").submit(function(event) {
@@ -54,15 +76,14 @@ $(document).ready(function(){
   var vowelTest = isFirstVowel(userArray);
   var singleCharTest = isSingleCharWord(wordArray);
   var multiCharTest = isMultiCharWord(wordArray);
-
+  var consonantCountTest = consonantCount(wordArray);
   if (numberTest === false){
     $(".output").append("<p>" + userInput + "</p>");
   }
   else{
-
-
+    console.log(consonantCountTest);
     // var beginningVowel = wordArray.join("");
-    $(".output").append("<p>" + multiCharTest + "</p>");
+    // $(".output").append("<p>" + multiCharTest + "</p>");
   }
 
 
