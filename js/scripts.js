@@ -2,6 +2,7 @@ var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var vowels = ['a', 'e', 'i', 'o', 'u'];
 var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
 
+//function used to test if user input a number. Will return false if number is found. (utilizes numbers array)
 var isNumber = function(userArray){
   for (var i = 0; i < userArray.length; i++) {
     for(var j = 0; j < numbers.length; j++){
@@ -12,6 +13,7 @@ var isNumber = function(userArray){
   }
 }
 
+//function used to test if first letter of word is a vowel (utilizes vowel array)
 var isFirstVowel = function(userArray) {
   for (var i = 0; i < vowels.length; i++){
     if (userArray[0] === vowels[i]){
@@ -51,18 +53,30 @@ var isMultiCharWord = function(wordArray){
 //if first letter is vowel it will return 1.
 var consonantCount = function(wordArray){
   var count = 0;
-    for (var i = 0; i < wordArray.length; i++){
-      var eachWord = wordArray[i].split("");
-      for (var j = 0; j < eachWord.length - 1; j++) {
-        count++;
-        if ((eachWord[j + 1] === "a") || (eachWord[j + 1] === "e") || (eachWord[j + 1] === "i") || (eachWord[j + 1] === "o") || (eachWord[j + 1] === "u")) {
-          break;
-        }
-      }   var tempString = eachWord.join("");
-         var consonantMove = tempString.substring(count) + tempString.substring(0 , count) + "ay";
-         return consonantMove;
+  for (var i = 0; i < wordArray.length; i++){
+    var eachWord = wordArray[i].split("");
+    for (var j = 0; j < eachWord.length - 1; j++) {
+      count++;
+      var xqu = eachWord[1] + eachWord[2];
+      var qu = eachWord[0] + eachWord[1];
+      if (xqu === "qu") { console.log("I'm here!");
+          var test = eachWord.join("");
+          var quiet = test.substring(3) + test.substring(0, 3) + "ay";
+          return quiet;
+        
+      } else if (qu === "qu"){
+        var test = eachWord.join("");
+        var quiet = test.substring(2) + test.substring(0, 2) + "ay";
+        return quiet;
       }
-
+       else if ((eachWord[j + 1] === "a") || (eachWord[j + 1] === "e") || (eachWord[j + 1] === "i") || (eachWord[j + 1] === "o") || (eachWord[j + 1] === "u")) {
+        break;
+      }
+    }
+  // var tempString = eachWord.join("");
+  //  var consonantMove = tempString.substring(count) + tempString.substring(0 , count) + "ay";
+  //  return consonantMove;
+  }
 }
 
 
@@ -109,4 +123,4 @@ $(document).ready(function(){
 //   }else if (multiple letter word) {
 //     call isMu
 //   }
-// }
+//
