@@ -40,12 +40,14 @@ var isMultiCharWord = function(wordArray){
       if ((wordArray[i].length > 1) && (eachWord[0] == "a") || (eachWord[0] == "e") || (eachWord[0] == "i") || (eachWord[0] == "o") || (eachWord[0] == "u")){
         wordArray[i] += "way";
         var answer = wordArray.join(" ");
+        return answer;
       }
     }
     if ((wordArray[i].length > 1) && (eachWord[0] !== "a") || (eachWord[0] !== "e") || (eachWord[0] !== "i") || (eachWord[0] !== "o") || (eachWord[0] !== "u")) {
       for (var k = 0; k < consonants.length; k++){
         var tempString = eachWord.join("");
         var answer = tempString.substring(1) + tempString.substring(0 , 1) + "ay";
+        return answer;
       }
     }
   }
@@ -63,7 +65,7 @@ var consonantCount = function(wordArray){
           var test = eachWord.join("");
           var quiet = test.substring(3) + test.substring(0, 3) + "ay";
           return quiet;
-        
+
       } else if (qu === "qu"){
         var test = eachWord.join("");
         var quiet = test.substring(2) + test.substring(0, 2) + "ay";
@@ -78,12 +80,6 @@ var consonantCount = function(wordArray){
   //  return consonantMove;
   }
 }
-
-
-
-
-var isFirstTwoConsonants =
-
 $(document).ready(function(){
   $("form#pig").submit(function(event) {
   event.preventDefault();
@@ -96,31 +92,24 @@ $(document).ready(function(){
   var singleCharTest = isSingleCharWord(wordArray);
   var multiCharTest = isMultiCharWord(wordArray);
   var consonantCountTest = consonantCount(wordArray);
-  if (numberTest === false){
-    $(".output").append("<p>" + userInput + "</p>");
-  }
-  else{
-    console.log(consonantCountTest);
-    // var beginningVowel = wordArray.join("");
-    // $(".output").append("<p>" + multiCharTest + "</p>");
-  }
 
+
+  if (numberTest === false){
+    alert("No numbers please.");
+    }
+  else {
+    if (vowelTest === true){
+      if (userArray.length <= 1){
+        for(var i = 0; i < userArray.length - 1; i++){
+        alert(singleCharTest);
+        }
+      } else{
+        for(var i = 0; i < userArray.length - 1; i++){
+        alert(multiCharTest);
+        }
+      }
+    }
+  }
 
   });
 });
-
-
-// WORKING single letter word that is vowel CODE
-// else if (vowelTest === true){
-//   userArray.push("ay")
-//   var beginningVowel = userArray.join("");
-//   $(".output").append("<p>" + beginningVowel + "</p>");
-
-// final for-loop
-// for(var i = 0; i < wordArray; i++){
-//   if (wordArray[i] is a  single letter word){
-//     call isOneWordVowel
-//   }else if (multiple letter word) {
-//     call isMu
-//   }
-//
