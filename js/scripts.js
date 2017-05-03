@@ -42,8 +42,8 @@ var isMultiCharWord = function(wordArray){
     }
     if ((wordArray[i].length > 1) && (eachWord[0] !== "a") || (eachWord[0] !== "e") || (eachWord[0] !== "i") || (eachWord[0] !== "o") || (eachWord[0] !== "u")) {
       for (var k = 0; k < consonants.length; k++){
-          var tempString = eachWord.join("");
-          var answer = tempString.substring(1) + tempString.substring(0 , 1) + "ay";
+        var tempString = eachWord.join("");
+        var answer = tempString.substring(1) + tempString.substring(0 , 1) + "ay";
       }
     }
   }
@@ -56,11 +56,16 @@ var consonantCount = function(wordArray){
       for (var j = 0; j < eachWord.length - 1; j++) {
         count++;
         if ((eachWord[j + 1] === "a") || (eachWord[j + 1] === "e") || (eachWord[j + 1] === "i") || (eachWord[j + 1] === "o") || (eachWord[j + 1] === "u")) {
-          return count;
+          break;
         }
+      }   var tempString = eachWord.join("");
+         var consonantMove = tempString.substring(count) + tempString.substring(0 , count) + "ay";
+         return consonantMove;
       }
-    }
+
 }
+
+
 
 
 var isFirstTwoConsonants =
