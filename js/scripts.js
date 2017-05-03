@@ -19,17 +19,29 @@ var isFirstVowel = function(userArray) {
   }
 }
 
-var isOneWordVowel = function(wordArray) {
-
+var isSingleCharWord = function(wordArray) {
   for (var i = 0; i < wordArray.length; i++){
     if ((wordArray[i].length === 1) && (wordArray[i] === "i") || (wordArray[i] === "a")){
     wordArray[i] += "ay";
     var answer = wordArray.join(" ");
     return answer;
-    } 
+    }
   }
 }
 
+var isMultiCharWord = function(wordArray){
+  for (var i = 0; i < wordArray.length; i++){
+    var eachWord = wordArray[i].split("");
+
+    for (var j = 0; j < eachWord.length; j++){
+      if ((wordArray[i].length > 1) && (eachWord[0] == "a") || (eachWord[0] == "e") || (eachWord[0] == "i") || (eachWord[0] == "o") || (eachWord[0] == "u")){
+        wordArray[i] += "ay";
+        var answer = wordArray.join(" ");
+        return answer;
+      }
+    }
+  }
+}
 
 $(document).ready(function(){
   $("form#pig").submit(function(event) {
@@ -40,7 +52,8 @@ $(document).ready(function(){
 
   var numberTest = isNumber(userArray);
   var vowelTest = isFirstVowel(userArray);
-  var singleTest = isOneWordVowel(wordArray);
+  var singleCharTest = isSingleCharWord(wordArray);
+  var multiCharTest = isMultiCharWord(wordArray);
 
   if (numberTest === false){
     $(".output").append("<p>" + userInput + "</p>");
@@ -49,7 +62,7 @@ $(document).ready(function(){
 
 
     // var beginningVowel = wordArray.join("");
-    $(".output").append("<p>" + singleTest + "</p>");
+    $(".output").append("<p>" + multiCharTest + "</p>");
   }
 
 
