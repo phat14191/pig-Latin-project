@@ -13,3 +13,5 @@ output: appleway
 The program moves all of the first consecutive consonants to the end of the word and add "ay" is the word begins with one of more consonants.
 input: latin
 output: atinlay
+
+Demo
